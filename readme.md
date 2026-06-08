@@ -2,6 +2,7 @@
 
 > A modern, full-featured car rental management system built with Laravel, Inertia.js, and Vue.js
 
+
 Car Location is a comprehensive open-source car rental platform that streamlines vehicle reservations, fleet management, and customer interactions. This is a complete rebuild (v2) featuring modern technologies and an improved user experience.
 
 ---
@@ -128,11 +129,9 @@ Please ensure your code follows the project's coding standards and includes appr
 
 ---
 
+
+
 ## 🙏 Acknowledgments
 
 Thanks to all contributors and the open-source community for making this project possible.
-
----
-
-**[⭐ Star this repository](https://github.com/brahimlaghmam01/carLocasion.git)** if you find it helpful!
 

@@ -5,6 +5,8 @@ import { Head, usePage } from '@inertiajs/vue3';
 import { fleet } from '@/routes';
 import { about } from '@/routes';
 import { ref, onMounted } from 'vue';
+import CarHero from "@/components/CarHero.vue"
+
 
 interface Car {
     id: number;
@@ -66,106 +68,11 @@ onMounted(() => {
 
     <HomeLayout>
         <main>
-            <!--  Hero Section with Neutral Background -->
-            <section
-                class="relative overflow-hidden bg-background py-20"
-            >
-                <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div class="grid items-center gap-16 lg:grid-cols-2">
-                        <!--  Left Content -->
-                        <div class="space-y-10 animate-fade-in-left">
-                            <div class="space-y-6">
-                                <div
-                                    class="inline-flex items-center rounded-full bg-secondary px-4 py-2 text-sm font-medium text-foreground animate-stagger-1"
-                                >
-                                    Premium Car Rental Experience
-                                </div>
 
-                                <h1
-                                    class="text-4xl leading-tight font-semibold text-foreground lg:text-7xl animate-stagger-2"
-                                >
-                                    Drive Your <br />
-                                    <span class="text-primary">Dreams</span>
-                                </h1>
-
-                                <p
-                                    class="max-w-lg text-lg leading-relaxed text-foreground/70 animate-stagger-3"
-                                >
-                                    Experience luxury and reliability with our
-                                    premium fleet. From business meetings to
-                                    weekend adventures, find the perfect vehicle
-                                    for every journey.
-                                </p>
-                            </div>
-
-                            <div class="flex flex-col gap-4 sm:flex-row animate-stagger-4">
-                                <a
-                                    :href="fleet.url()"
-                                    class="group cursor-pointer inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-md font-medium text-primary-foreground shadow-sm transition-all duration-300 hover:opacity-90 hover-lift"
-                                >
-                                    Browse Fleet
-                                    <svg class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                    </svg>
-                                </a>
-                                <a
-                                    :href="about.url()"
-                                    class="inline-flex cursor-pointer items-center justify-center rounded-lg border border-border bg-transparent px-8 py-3 text-md font-medium text-foreground transition-all duration-300 hover:bg-secondary hover-lift relative overflow-hidden group"
-                                >
-                                    <span class="relative z-10">Learn More</span>
-                                    <span class="absolute inset-0 bg-primary/5 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"></span>
-                                </a>
-                            </div>
-
-                            <!--  Stats -->
-                            <div
-                                class="grid grid-cols-3 gap-8 border-t border-border pt-10 animate-stagger-5"
-                            >
-                                <div class="text-left group cursor-pointer">
-                                    <div class="text-3xl font-semibold text-foreground transition-transform group-hover:scale-110">
-                                        1000+
-                                    </div>
-                                    <div
-                                        class="mt-1 text-sm font-medium text-foreground/60"
-                                    >
-                                        Happy Customers
-                                    </div>
-                                </div>
-                                <div class="text-left group cursor-pointer">
-                                    <div class="text-3xl font-semibold text-foreground transition-transform group-hover:scale-110">
-                                        150+
-                                    </div>
-                                    <div
-                                        class="mt-1 text-sm font-medium text-foreground/60"
-                                    >
-                                        Premium Cars
-                                    </div>
-                                </div>
-                                <div class="text-left group cursor-pointer">
-                                    <div class="text-3xl font-semibold text-foreground transition-transform group-hover:scale-110">
-                                        24/7
-                                    </div>
-                                    <div
-                                        class="mt-1 text-sm font-medium text-foreground/60"
-                                    >
-                                        Support
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Image -->
-                        <div class="flex justify-center lg:justify-end animate-fade-in-right">
-                            <img
-                                src="/images/hero_image.png"
-                                alt="Premium Car Garage - Isometric View"
-                                class="h-auto max-w-full rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            <!--  Hero 3d cars-->
+          <div>
+  <CarHero />
+</div>
             <!--  Featured Cars Section -->
             <section id="fleet" class="bg-background py-24">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
