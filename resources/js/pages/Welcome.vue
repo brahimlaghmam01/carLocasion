@@ -4,6 +4,8 @@ import HomeLayout from '@/layouts/HomeLayout.vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import { fleet } from '@/routes';
 import { about } from '@/routes';
+import CarHero from "@/components/CarHero.vue"
+
 
 interface Car {
     id: number;
@@ -35,101 +37,10 @@ const homeCars = $page.props.homeCars as Car[];
 
     <HomeLayout>
         <main>
-            <!--  Hero Section with Neutral Background -->
-            <section
-                class="relative overflow-hidden bg-background py-20"
-            >
-                <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div class="grid items-center gap-16 lg:grid-cols-2">
-                        <!--  Left Content -->
-                        <div class="space-y-10">
-                            <div class="space-y-6">
-                                <div
-                                    class="inline-flex items-center rounded-full bg-secondary px-4 py-2 text-sm font-medium text-foreground"
-                                >
-                                    Premium Car Rental Experience
-                                </div>
-
-                                <h1
-                                    class="text-4xl leading-tight font-semibold text-foreground lg:text-7xl"
-                                >
-                                    Drive Your <br />
-                                    <span class="text-primary">Dreams</span>
-                                </h1>
-
-                                <p
-                                    class="max-w-lg text-lg leading-relaxed text-foreground/70"
-                                >
-                                    Experience luxury and reliability with our
-                                    premium fleet. From business meetings to
-                                    weekend adventures, find the perfect vehicle
-                                    for every journey.
-                                </p>
-                            </div>
-
-                            <div class="flex flex-col gap-4 sm:flex-row">
-                                <a
-                                    :href="fleet.url()"
-                                    class="group cursor-pointer inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-md font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:opacity-90"
-                                >
-                                    Browse Fleet
-                                </a>
-                                <a
-                                    :href="about.url()"
-                                    class="inline-flex cursor-pointer items-center justify-center rounded-lg border border-border bg-transparent px-8 py-3 text-md font-medium text-foreground transition-all duration-200 hover:bg-secondary"
-                                >
-                                    Learn More
-                                </a>
-                            </div>
-
-                            <!--  Stats -->
-                            <div
-                                class="grid grid-cols-3 gap-8 border-t border-border pt-10"
-                            >
-                                <div class="text-left">
-                                    <div class="text-3xl font-semibold text-foreground">
-                                        1000+
-                                    </div>
-                                    <div
-                                        class="mt-1 text-sm font-medium text-foreground/60"
-                                    >
-                                        Happy Customers
-                                    </div>
-                                </div>
-                                <div class="text-left">
-                                    <div class="text-3xl font-semibold text-foreground">
-                                        150+
-                                    </div>
-                                    <div
-                                        class="mt-1 text-sm font-medium text-foreground/60"
-                                    >
-                                        Premium Cars
-                                    </div>
-                                </div>
-                                <div class="text-left">
-                                    <div class="text-3xl font-semibold text-foreground">
-                                        24/7
-                                    </div>
-                                    <div
-                                        class="mt-1 text-sm font-medium text-foreground/60"
-                                    >
-                                        Support
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Image -->
-                        <div class="flex justify-center lg:justify-end">
-                            <img
-                                src="/images/hero_image.png"
-                                alt="Premium Car Garage - Isometric View"
-                                class="h-auto max-w-full rounded-2xl shadow-xl"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!--  Hero 3d cars-->
+          <div>
+  <CarHero />
+</div>
 
             <!--  Featured Cars Section -->
             <section id="fleet" class="bg-background py-24">
