@@ -18,7 +18,7 @@ import { contact } from '@/routes'
                         >
                             Your trusted partner in premium car rental services,
                             providing reliable transportation solutions since
-                            2015.
+                            2026.
                         </p>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ import { contact } from '@/routes'
                                 class="space-y-4 leading-relaxed text-gray-600"
                             >
                                 <p>
-                                    Founded in 2015, Car Location began with a
+                                    Founded in 2026, Car Location began with a
                                     simple mission: to provide reliable,
                                     affordable, and convenient car rental
                                     services to travelers and locals alike. What
