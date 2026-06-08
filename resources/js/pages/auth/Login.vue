@@ -120,9 +120,9 @@ const isDemoOpen = ref(false);
                         <!-- Admin Demo -->
                         <div class="rounded-lg bg-white p-3 shadow-sm">
                             <div class="mb-2 flex items-center space-x-2">
-                                <Shield class="h-4 w-4 text-orange-600" />
+                                <Shield class="h-4 w-4 text-blue-600" />
                                 <span
-                                    class="text-xs font-semibold tracking-wide text-orange-700 uppercase"
+                                    class="text-xs font-semibold tracking-wide text-blue-700 uppercase"
                                 >
                                     Admin Access
                                 </span>
@@ -145,9 +145,9 @@ const isDemoOpen = ref(false);
                                     </code>
                                 </div>
                                 <div class="mt-2 border-t border-gray-200 pt-2">
-                                    <a
+                                        <a
                                         href="/admin-secret-url"
-                                        class="text-xs font-medium text-orange-600 hover:text-orange-700 hover:underline"
+                                        class="text-xs font-medium text-blue-600 hover:text-blue-700 hover:underline"
                                     >
                                         → Go to Admin Panel
                                     </a>
@@ -194,7 +194,7 @@ const isDemoOpen = ref(false);
                                 :tabindex="1"
                                 autocomplete="email"
                                 placeholder="Enter your email"
-                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                             />
                             <InputError :message="errors.email" class="mt-1" />
                         </div>
@@ -211,7 +211,7 @@ const isDemoOpen = ref(false);
                                 <TextLink
                                     v-if="canResetPassword"
                                     :href="request()"
-                                    class="text-sm font-medium text-orange-600 hover:text-orange-700"
+                                    class="text-sm font-medium text-blue-600 hover:text-blue-700"
                                     :tabindex="5"
                                 >
                                     Forgot password?
@@ -225,7 +225,7 @@ const isDemoOpen = ref(false);
                                 :tabindex="2"
                                 autocomplete="current-password"
                                 placeholder="Enter your password"
-                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                             />
                             <InputError
                                 :message="errors.password"
@@ -243,7 +243,7 @@ const isDemoOpen = ref(false);
                                     id="remember"
                                     name="remember"
                                     :tabindex="3"
-                                    class="rounded border-gray-300 text-orange-600 focus:ring-orange-500"
+                                    class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                 />
                                 <span class="text-sm text-gray-700"
                                     >Remember me for 30 days</span
@@ -254,7 +254,7 @@ const isDemoOpen = ref(false);
                         <!-- Submit Button -->
                         <Button
                             type="submit"
-                            class="flex w-full items-center justify-center rounded-lg bg-orange-600 px-4 py-3 font-semibold text-white transition-colors duration-200 hover:bg-orange-700"
+                            class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition-colors duration-200 hover:bg-blue-700"
                             :tabindex="4"
                             :disabled="processing"
                             data-test="login-button"
@@ -273,7 +273,7 @@ const isDemoOpen = ref(false);
                                 <TextLink
                                     :href="register()"
                                     :tabindex="5"
-                                    class="ml-1 font-semibold text-orange-600 hover:text-orange-700"
+                                    class="ml-1 font-semibold text-blue-600 hover:text-blue-700"
                                 >
                                     Create one here
                                 </TextLink>

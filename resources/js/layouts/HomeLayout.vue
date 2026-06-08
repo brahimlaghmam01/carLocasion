@@ -8,26 +8,57 @@ import { home } from '@/routes';
 import { fleet } from '@/routes';
 import { about } from '@/routes';
 import { contact } from '@/routes';
+import { ref, onMounted } from 'vue';
+import WhatsAppButton from '@/components/WhatsAppButton.vue';
 
 const $page = usePage();
 
 const role = $page.props.auth.user?.role;
 
 const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIndex();
+
+// For scroll effect
+const isScrolled = ref(false);
+if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', () => {
+        isScrolled.value = window.scrollY > 0;
+    });
+}
+
+onMounted(() => {
+    // Auto-add animate-on-scroll to top-level page sections so pages
+    // get a subtle reveal when scrolling without editing every page.
+    try {
+        document.querySelectorAll('#page-content > *').forEach((el) => {
+            if (!el.classList.contains('animate-on-scroll')) {
+                el.classList.add('animate-on-scroll');
+                // default animation if none specified
+                if (!(el as HTMLElement).dataset.anim) (el as HTMLElement).dataset.anim = 'animate-fade-in-up';
+            }
+        });
+    } catch (e) {
+        // noop in SSR / environments without document
+    }
+});
 </script>
 
 <template>
     <div>
         <header
-            class="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md"
+            class="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md transition-all duration-300"
+            :class="isScrolled ? 'shadow-lg' : 'shadow-sm'"
         >
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <nav class="flex h-16 items-center justify-between">
                     <!--  Logo -->
-                    <div class="flex flex-col items-center space-x-2">
-                        <img src="/logo/logo.png" alt="logo" class="h-6" />
+                    <div class="flex flex-col items-center space-x-2 animate-fade-in-left">
+                        <img 
+                            src="/logo/logo.png" 
+                            alt="logo" 
+                            class="h-6 transition-transform duration-300 hover:scale-110" 
+                        />
                         <p class="font-bold">
-                            REAL<span class="text-orange-500">RENT</span>CAR
+                            CAR<span class="text-blue-500">LOCA</span>TION
                         </p>
                     </div>
 
@@ -35,40 +66,47 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                     <div class="hidden items-center space-x-8 md:flex">
                         <Link 
                             :href="home()" 
-                            :class="{ 'text-orange-500': $page.url === home().url, 'text-gray-700': $page.url !== home().url }" 
-                            class="font-medium transition-colors hover:text-orange-500"
+                            :class="{ 'text-blue-500': $page.url === home().url, 'text-gray-700': $page.url !== home().url }" 
+                            class="font-medium transition-all duration-300 hover:text-blue-500 relative group animate-fade-in"
                         >
                             Home
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                         </Link>
                         <Link 
                             :href="fleet()" 
-                            :class="{ 'text-orange-500': $page.url.startsWith('/fleet'), 'text-gray-700': !$page.url.startsWith('/fleet') }" 
-                            class="font-medium transition-colors hover:text-orange-500"
+                            :class="{ 'text-blue-500': $page.url.startsWith('/fleet'), 'text-gray-700': !$page.url.startsWith('/fleet') }" 
+                            class="font-medium transition-all duration-300 hover:text-blue-500 relative group animate-fade-in"
+                            style="animation-delay: 0.05s"
                         >
                             Fleet
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                         </Link>
                         <Link 
                             :href="about()" 
-                            :class="{ 'text-orange-500': $page.url === '/about', 'text-gray-700': $page.url !== '/about' }" 
-                            class="font-medium transition-colors hover:text-orange-500"
+                            :class="{ 'text-blue-500': $page.url === '/about', 'text-gray-700': $page.url !== '/about' }" 
+                            class="font-medium transition-all duration-300 hover:text-blue-500 relative group animate-fade-in"
+                            style="animation-delay: 0.1s"
                         >
                             About
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                         </Link>
                         <Link 
                             :href="contact()" 
-                            :class="{ 'text-orange-500': $page.url === '/contact', 'text-gray-700': $page.url !== '/contact' }" 
-                            class="font-medium transition-colors hover:text-orange-500"
+                            :class="{ 'text-blue-500': $page.url === '/contact', 'text-gray-700': $page.url !== '/contact' }" 
+                            class="font-medium transition-all duration-300 hover:text-blue-500 relative group animate-fade-in"
+                            style="animation-delay: 0.15s"
                         >
                             Contact
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                         </Link>
                     </div>
 
                     <!-- Auth Buttons -->
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-3 animate-fade-in-right">
                         <Link
                             v-if="$page.props.auth.user"
                             :href="dashboardLink"
-                            class="inline-flex items-center rounded-xl bg-gray-50 px-6 py-2.5 text-sm font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:shadow-md"
+                            class="inline-flex items-center rounded-xl bg-gray-50 px-6 py-2.5 text-sm font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:shadow-md hover-lift"
                         >
                             <svg
                                 class="mr-2 h-4 w-4"
@@ -88,13 +126,14 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                         <template v-else>
                             <Link
                                 :href="login()"
-                                class="inline-flex items-center px-6 py-2.5 text-sm font-semibold text-gray-700 transition-colors duration-200 hover:text-orange-600"
+                                class="inline-flex items-center px-6 py-2.5 text-sm font-semibold text-gray-700 transition-all duration-200 hover:text-blue-600 relative group"
                             >
                                 Sign In
+                                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                             </Link>
                             <Link
                                 :href="register()"
-                                class="inline-flex items-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-orange-600 hover:to-orange-700 hover:shadow-xl"
+                                class="inline-flex items-center rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover-lift"
                             >
                                 Get Started
                             </Link>
@@ -104,16 +143,20 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
             </div>
         </header>
 
-        <slot />
+        <WhatsAppButton whatsappNumber="+212770876664" />
+
+        <main id="page-content">
+            <slot />
+        </main>
 
         <!--  Footer -->
         <footer class="bg-gray-900 py-16 text-white">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="grid gap-12 md:grid-cols-4">
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-2">
+                    <div class="space-y-6 animate-stagger-1">
+                        <div class="flex items-center space-x-2 group hover-lift">
                             <div
-                                class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-orange-600"
+                                class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 transition-transform duration-300 group-hover:scale-110"
                             >
                                 <svg
                                     class="h-6 w-6 text-white"
@@ -131,7 +174,7 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                             </div>
                             <div>
                                 <h3 class="text-xl font-bold">
-                                    REAL<span class="text-orange-500"
+                                    REAL<span class="text-blue-500"
                                         >RENT</span
                                     >
                                 </h3>
@@ -147,80 +190,80 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                         </p>
                     </div>
 
-                    <div class="space-y-6">
+                    <div class="space-y-6 animate-stagger-2">
                         <h4 class="text-lg font-semibold">Services</h4>
                         <ul class="space-y-3 text-gray-400">
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Luxury Car Rental</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Long Term Rental</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Corporate Solutions</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Airport Transfers</a
                                 >
                             </li>
                         </ul>
                     </div>
 
-                    <div class="space-y-6">
+                    <div class="space-y-6 animate-stagger-3">
                         <h4 class="text-lg font-semibold">Support</h4>
                         <ul class="space-y-3 text-gray-400">
                             <li>
                                 <a
                                     :href="contact.url()"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Contact Us</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Help Center</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Terms & Conditions</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="#"
-                                    class="transition-colors hover:text-orange-500"
+                                    class="transition-all duration-300 hover:text-blue-500 hover:translate-x-1 inline-block"
                                     >Privacy Policy</a
                                 >
                             </li>
                         </ul>
                     </div>
 
-                    <div class="space-y-6">
+                    <div class="space-y-6 animate-stagger-4">
                         <h4 class="text-lg font-semibold">Contact Info</h4>
                         <div class="space-y-3 text-gray-400">
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 transition-all duration-300 hover:text-blue-500 hover:translate-x-1 cursor-pointer">
                                 <svg
-                                    class="h-5 w-5 text-orange-500"
+                                    class="h-5 w-5 text-blue-500 flex-shrink-0"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -234,9 +277,9 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                                 </svg>
                                 <span>+212 6 123-4567</span>
                             </div>
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 transition-all duration-300 hover:text-blue-500 hover:translate-x-1 cursor-pointer">
                                 <svg
-                                    class="h-5 w-5 text-orange-500"
+                                    class="h-5 w-5 text-blue-500 flex-shrink-0"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -250,9 +293,9 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                                 </svg>
                                 <span>car@location.com</span>
                             </div>
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 transition-all duration-300 hover:text-blue-500 hover:translate-x-1 cursor-pointer">
                                 <svg
-                                    class="h-5 w-5 text-orange-500"
+                                    class="h-5 w-5 text-blue-500 flex-shrink-0"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -276,7 +319,7 @@ const dashboardLink = role === 'admin' ? adminCarsIndex() : clientReservationsIn
                     </div>
                 </div>
 
-                <div class="mt-2 border-t border-gray-800 pt-8">
+                <div class="mt-2 border-t border-gray-800 pt-8 animate-fade-in">
                    
                         <p class="text-gray-400 text-center">
                             &copy; 2025 Car Location. All rights reserved.

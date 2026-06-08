@@ -4,6 +4,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
+import { initScrollAnimations } from './scrollAnimateInit';
 import { initializeTheme } from './composables/useAppearance';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -19,9 +20,13 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .mount(el);
+
+        // initialize global scroll animations for elements using
+        // the `animate-on-scroll` class (supports `data-anim` and `data-delay`)
+        initScrollAnimations();
     },
     progress: {
-        color: '#f56100',
+        color: '#3b82f6',
     },
 });
 

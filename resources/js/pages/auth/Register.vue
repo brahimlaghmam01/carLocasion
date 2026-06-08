@@ -59,7 +59,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                                 autocomplete="name"
                                 name="name"
                                 placeholder="Enter your full name"
-                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                             />
                             <InputError
                                 :message="errors.name"
@@ -83,7 +83,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                                 autocomplete="email"
                                 name="email"
                                 placeholder="Enter your email address"
-                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                             />
                             <InputError
                                 :message="errors.email"
@@ -107,7 +107,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                                 autocomplete="new-password"
                                 name="password"
                                 placeholder="Create a password"
-                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                             />
                             <InputError
                                 :message="errors.password"
@@ -131,7 +131,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                                 autocomplete="new-password"
                                 name="password_confirmation"
                                 placeholder="Confirm your password"
-                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                             />
                             <InputError
                                 :message="errors.password_confirmation"
@@ -142,7 +142,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                         <!-- Submit Button -->
                         <Button
                             type="submit"
-                            class="flex w-full items-center justify-center rounded-lg bg-orange-500 px-4 py-3 font-semibold text-white transition-colors duration-200 hover:bg-orange-600"
+                            class="flex w-full items-center justify-center rounded-lg bg-blue-500 px-4 py-3 font-semibold text-white transition-colors duration-200 hover:bg-blue-600"
                             tabindex="5"
                             :disabled="processing"
                             data-test="register-user-button"
@@ -160,7 +160,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                                 Already have an account?
                                 <TextLink
                                     :href="login()"
-                                    class="font-medium text-orange-500 transition-colors hover:text-orange-600"
+                                    class="font-medium text-blue-500 transition-colors hover:text-blue-600"
                                     :tabindex="6"
                                 >
                                     Sign in here

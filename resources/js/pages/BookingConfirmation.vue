@@ -219,7 +219,7 @@ const reservation = $page.props.reservation;
                                             >Total:</span
                                         >
                                         <span
-                                            class="text-2xl font-bold text-orange-500"
+                                            class="text-2xl font-bold text-blue-500"
                                         >
                                             DH {{
                                                 parseFloat(

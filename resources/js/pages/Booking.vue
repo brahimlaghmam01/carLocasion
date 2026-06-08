@@ -131,7 +131,7 @@ const commonLocations = [
                     >
                         <a
                             href="/fleet"
-                            class="font-medium transition-colors duration-200 hover:text-orange-500"
+                            class="font-medium transition-colors duration-200 hover:text-blue-500"
                             >Fleet</a
                         >
                         <svg
@@ -153,7 +153,7 @@ const commonLocations = [
                     </nav>
                     <div class="flex items-center space-x-4">
                         <div
-                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-600"
+                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-blue-600"
                         >
                             <svg
                                 class="h-6 w-6 text-white"
@@ -253,13 +253,13 @@ const commonLocations = [
                                     </div>
                                     <div class="text-right">
                                         <div
-                                            class="rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 px-4 py-2 text-white"
+                                            class="rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-white"
                                         >
                                             <span class="text-3xl font-bold"
                                                 >DH{{ car.price_per_day }}</span
                                             >
                                             <span
-                                                class="block text-sm text-orange-100"
+                                                class="block text-sm text-blue-100"
                                                 >per day</span
 
                                             >
@@ -279,7 +279,7 @@ const commonLocations = [
                         >
                             <div class="mb-8 flex items-center space-x-3">
                                 <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600"
+                                    class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-600"
                                 >
                                     <svg
                                         class="h-5 w-5 text-white"
@@ -307,7 +307,7 @@ const commonLocations = [
                                         class="flex items-center text-lg font-semibold text-gray-900"
                                     >
                                         <svg
-                                            class="mr-2 h-5 w-5 text-orange-500"
+                                            class="mr-2 h-5 w-5 text-blue-500"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -334,7 +334,7 @@ const commonLocations = [
                                                 :min="$page.props.minDate"
                                                 :max="$page.props.maxDate"
                                                 required
-                                                class="w-full rounded-xl border-2 border-gray-200 px-4 py-4 text-lg transition-all duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                                class="w-full rounded-xl border-2 border-gray-200 px-4 py-4 text-lg transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors.start_date,
@@ -363,7 +363,7 @@ const commonLocations = [
                                                 "
                                                 :max="$page.props.maxDate"
                                                 required
-                                                class="w-full rounded-xl border-2 border-gray-200 px-4 py-4 text-lg transition-all duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                                class="w-full rounded-xl border-2 border-gray-200 px-4 py-4 text-lg transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors.end_date,
@@ -385,7 +385,7 @@ const commonLocations = [
                                         class="flex items-center text-lg font-semibold text-gray-900"
                                     >
                                         <svg
-                                            class="mr-2 h-5 w-5 text-orange-500"
+                                            class="mr-2 h-5 w-5 text-blue-500"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -415,7 +415,7 @@ const commonLocations = [
                                             <select
                                                 v-model="form.pickup_location"
                                                 required
-                                                class="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-4 text-lg transition-all duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                                class="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-4 text-lg transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors
@@ -454,7 +454,7 @@ const commonLocations = [
                                             <select
                                                 v-model="form.return_location"
                                                 required
-                                                class="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-4 text-lg transition-all duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                                class="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-4 text-lg transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors
@@ -496,7 +496,7 @@ const commonLocations = [
                         >
                             <div class="mb-6 flex items-center space-x-3">
                                 <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600"
+                                    class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-600"
                                 >
                                     <svg
                                         class="h-5 w-5 text-white"
@@ -594,7 +594,7 @@ const commonLocations = [
                                                 >Total</span
                                             >
                                             <span
-                                                class="text-2xl font-bold text-orange-500"
+                                                class="text-2xl font-bold text-blue-500"
                                             >
                                                 DH {{
                                                     rentalDays > 0
@@ -612,7 +612,7 @@ const commonLocations = [
                                 @click="submitBooking"
                                 :disabled="!canSubmit || form.processing"
                                 :class="{
-                                    'transform cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg hover:scale-[1.01] hover:from-orange-600 hover:to-orange-700 hover:shadow-xl':
+                                    'transform cursor-pointer bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:scale-[1.01] hover:from-blue-600 hover:to-blue-700 hover:shadow-xl':
                                         canSubmit && !form.processing,
                                     'cursor-not-allowed bg-gray-300 text-gray-500':
                                         !canSubmit || form.processing,

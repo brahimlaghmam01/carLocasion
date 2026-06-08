@@ -26,7 +26,7 @@ defineProps<{
                     class="pointer-events-none absolute inset-0 overflow-hidden"
                 >
                     <div
-                        class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-orange-500/5 blur-3xl"
+                        class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl"
                     ></div>
                     <div
                         class="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-indigo-500/5 blur-3xl"
@@ -36,11 +36,11 @@ defineProps<{
                 <div class="relative space-y-8">
                     <!-- Header -->
                     <div class="text-center">
-                        <div
-                            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-slate-600 bg-slate-700"
-                        >
-                            <Shield class="h-8 w-8 text-orange-400" />
-                        </div>
+                            <div
+                                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-slate-600 bg-slate-700"
+                            >
+                                <Shield class="h-8 w-8 text-blue-400" />
+                            </div>
                         <h1 class="mb-2 text-2xl font-bold text-white">
                             Administrative Access
                         </h1>
@@ -73,7 +73,7 @@ defineProps<{
                                     :tabindex="1"
                                     autocomplete="email"
                                     placeholder="admin@domain.com"
-                                    class="w-full rounded-lg border border-slate-600 bg-slate-700/50 px-4 py-3 text-white placeholder-slate-400 transition-colors focus:border-orange-500 focus:bg-slate-700 focus:ring-2 focus:ring-orange-500/20"
+                                    class="w-full rounded-lg border border-slate-600 bg-slate-700/50 px-4 py-3 text-white placeholder-slate-400 transition-colors focus:border-blue-500 focus:bg-slate-700 focus:ring-2 focus:ring-blue-500/20"
                                 />
                                 <InputError
                                     :message="errors.email"
@@ -106,7 +106,7 @@ defineProps<{
                                     :tabindex="2"
                                     autocomplete="current-password"
                                     placeholder="Enter secure password"
-                                    class="w-full rounded-lg border border-slate-600 bg-slate-700/50 px-4 py-3 text-white placeholder-slate-400 transition-colors focus:border-orange-500 focus:bg-slate-700 focus:ring-2 focus:ring-orange-500/20"
+                                    class="w-full rounded-lg border border-slate-600 bg-slate-700/50 px-4 py-3 text-white placeholder-slate-400 transition-colors focus:border-blue-500 focus:bg-slate-700 focus:ring-2 focus:ring-blue-500/20"
                                 />
                                 <InputError
                                     :message="errors.password"
@@ -117,7 +117,7 @@ defineProps<{
                             <!-- Submit Button -->
                             <Button
                                 type="submit"
-                                class="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-orange-600 to-orange-700 px-4 py-3 font-semibold text-white transition-all duration-200 hover:from-orange-700 hover:to-orange-800 hover:shadow-lg hover:shadow-orange-500/25 disabled:cursor-not-allowed disabled:opacity-50"
+                                class="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3 font-semibold text-white transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:shadow-blue-500/25 disabled:cursor-not-allowed disabled:opacity-50"
                                 :tabindex="4"
                                 :disabled="processing"
                                 data-test="admin-login-button"

@@ -1,0 +1,55 @@
+:root{
+}
+
+/* Shared UI animations (used by Welcome/Contact enhancements) */
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Utility classes */
+.animate-floaty { animation: floaty 4s ease-in-out infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up { animation: fade-up 700ms ease-out both; }
+
+/* Utility alias used by scroll initializer */
+.will-animate { opacity: 0; transform: translateY(12px); }
+.animate-fade-in-up { animation: fade-up 700ms ease-out both; }
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-left { animation: slide-in-left 700ms cubic-bezier(.22,.9,.33,1) both; }
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-right { animation: slide-in-right 700ms cubic-bezier(.22,.9,.33,1) both; }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 500ms ease-out both; }
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.15); }
+  70% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+}
+.animate-pulse-glow { animation: pulse-glow 1.6s ease-out infinite; }
+
+@keyframes spin-smooth {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-smooth { animation: spin-smooth 1s linear infinite; }
+
