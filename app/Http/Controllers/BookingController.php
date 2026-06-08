@@ -18,7 +18,11 @@ class BookingController extends Controller
             return redirect()->route('fleet')->with('error', 'This car is not available for booking.');
         }
 
-        return inertia('Booking', compact('car'));
+        return inertia('Booking', [
+            'car' => $car->load(['files' => function ($q) {
+                $q->where('collection', 'image');
+            }]),
+        ]);
     }
 
     public function book(Car $car, Request $request)

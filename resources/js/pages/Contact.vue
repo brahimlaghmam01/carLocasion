@@ -176,7 +176,7 @@ const sendTicket = () => {
                                         Phone
                                     </h4>
                                     <p class="text-gray-600">
-                                        +1 (555) 123-4567
+                                        +212 6 123-4567
                                     </p>
                                 </div>
 
@@ -188,7 +188,7 @@ const sendTicket = () => {
                                         Email
                                     </h4>
                                     <p class="text-gray-600">
-                                        info@realrentcar.com
+                                        car@location.com
                                     </p>
                                 </div>
 
@@ -200,9 +200,9 @@ const sendTicket = () => {
                                         Address
                                     </h4>
                                     <p class="text-gray-600">
-                                        123 Main Street<br />
-                                        Downtown District<br />
-                                        City, State 12345
+                                        AV Soussa Rue Albania<br />
+                                        Mont Fleurie 2<br />
+                                        Fes, Morocco
                                     </p>
                                 </div>
 

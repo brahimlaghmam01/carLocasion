@@ -113,10 +113,12 @@ class CarsController extends Controller
             'image.*' => ['string'],
         ]);
 
-        // Restrict this action
-        return redirect()
-            ->back()
-            ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        // Restrict this action in demo mode
+        if (config('app.demo')) {
+            return redirect()
+                ->back()
+                ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        }
 
         $car = Car::create(collect($validated)->except(['image'])->toArray());
 
@@ -127,6 +129,15 @@ class CarsController extends Controller
                 $request->input('image', []),
                 'image'
             );
+
+            // Persist the first uploaded image path into cars.car_img (used by fallback)
+            $car->load('files');
+            $firstImage = $car->files
+                ->firstWhere('collection', 'image');
+
+            if ($firstImage && !empty($firstImage->path)) {
+                $car->updateQuietly(['car_img' => $firstImage->path]);
+            }
         }
 
         return redirect()
@@ -191,11 +202,12 @@ class CarsController extends Controller
             'image_removed_files.*' => ['integer'],
         ]);
 
-        // Restrict this action
-        return redirect()
-            ->back()
-            ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
-
+        // Restrict this action in demo mode
+        if (config('app.demo')) {
+            return redirect()
+                ->back()
+                ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        }
 
         $car->update(collect($validated)->except(['image_temp_folders', 'image_removed_files'])->toArray());
 
@@ -215,6 +227,15 @@ class CarsController extends Controller
             'image'
         );
 
+        // Update cars.car_img from the current FilePond 'image' collection
+        $car->load('files');
+        $firstImage = $car->files
+            ->firstWhere('collection', 'image');
+
+        $car->updateQuietly([
+            'car_img' => ($firstImage && !empty($firstImage->path)) ? $firstImage->path : null
+        ]);
+
         return redirect()
             ->route('admin.cars.index')
             ->with('success', 'Car updated successfully.');
@@ -225,10 +246,12 @@ class CarsController extends Controller
      */
     public function destroy(Car $car)
     {
-        // Restrict this action
-        return redirect()
-            ->back()
-            ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        // Restrict this action in demo mode
+        if (config('app.demo')) {
+            return redirect()
+                ->back()
+                ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        }
 
         $car->delete();
 

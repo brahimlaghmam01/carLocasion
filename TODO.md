@@ -1,9 +1,9 @@
-- [x] Explore relevant UI pages/components (already started)
-- [x] Update currency display from $ to DH (no numeric conversion): CarCard.vue, Booking.vue, Fleet.vue filters UI
-- [ ] Rename Vue page helper variable from $page to DHpage in modified pages/components (no repo-wide search)
-- [ ] Add animations/design enhancements to Welcome.vue and Contact.vue (and optionally shared CSS)
+# TODO - Car image upload & display (car_img)
 
-- [ ] Verify build (Vite) / TypeScript errors
-- [ ] Report what changed
+- [x] Update `App\Http\Controllers\Admin\CarsController@store` to save `cars.car_img` after FilePond upload.
+- [x] Update `App\Http\Controllers\Admin\CarsController@update` to update `cars.car_img` after FilePond updates.
+- [x] Update `App\Models\Car::getImageUrlAttribute()` to fallback to `car_img` if no FilePond file exists.
+- [x] Update `App\Http\Controllers\HomePagesController@fleet` and `BookingController@show` to eager-load image files so `image_url` works on the website.
+- [ ] Run quick test: create car with image -> verify DB row updated + website shows image.
 
 

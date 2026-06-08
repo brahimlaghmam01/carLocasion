@@ -48,6 +48,8 @@ onMounted(() => {
     );
 
     document.querySelectorAll('.animate-on-scroll-up, .animate-on-scroll-left, .animate-on-scroll-right').forEach((el) => {
+        // ensure element is initially hidden to avoid flash
+        el.classList.add('will-animate');
         observer.observe(el);
     });
 });
@@ -55,10 +57,10 @@ onMounted(() => {
 
 <template>
     <Head>
-        <title>Real Rent Car - Premium Car Rental Service</title>
+        <title>Car Location - Premium Car Rental Service</title>
         <meta
             name="description"
-            content="Real Rent Car is a premium car rental platform providing reliable transportation solutions. We offer a wide range of cars for rent, from economy to luxury, for short and long term rentals."
+            content="Car Location is a premium car rental platform providing reliable transportation solutions. We offer a wide range of cars for rent, from economy to luxury, for short and long term rentals."
         />
     </Head>
 
@@ -212,7 +214,7 @@ onMounted(() => {
                         <h2
                             class="mb-6 text-3xl font-semibold text-foreground lg:text-5xl"
                         >
-                            Why Choose RealRent?
+                            Why Choose CarLocation?
                         </h2>
                         <p class="mx-auto max-w-2xl text-lg text-foreground/70">
                             We're committed to providing an unparalleled car

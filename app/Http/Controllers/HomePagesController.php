@@ -8,16 +8,25 @@ use App\Models\Reservation;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomePagesController extends Controller
 {
     public function index()
     {
         $homeCars = Car::whereIn('id', [6, 8, 13, 17, 23, 29])
-        ->select('id', 'make', 'model', 'year', 'price_per_day', 'description', 'fuel_type')
-        ->orderBy('year', 'asc')
+            ->select('id', 'make', 'model', 'year', 'price_per_day', 'description', 'fuel_type', 'car_img')
+            ->orderBy('year', 'asc')
             ->limit(30)
-            ->get();
+            ->get()
+            ->each(function ($car) {
+                // Ensure frontend receives image_url even when we only selected car_img.
+                $car->image_url = $car->image_url ?? (
+                    !empty($car->car_img)
+                        ? Storage::url($car->car_img)
+                        : asset('images/car-default.jpg')
+                );
+            });
 
         return inertia('Welcome', compact('homeCars'));
     }
@@ -25,7 +34,7 @@ class HomePagesController extends Controller
     public function fleet(Request $request)
     {
         $query = Car::where('status', CarStatus::AVAILABLE)
-            ->select('id', 'make', 'model', 'year', 'price_per_day', 'description', 'fuel_type');
+            ->select('id', 'make', 'model', 'year', 'price_per_day', 'description', 'fuel_type', 'car_img');
 
         // Search functionality
         if ($request->filled('search')) {
@@ -61,7 +70,22 @@ class HomePagesController extends Controller
             $query->where('price_per_day', '<=', $request->max_price);
         }
 
-        $cars = $query->paginate(10)->withQueryString();
+        $cars = $query
+            ->with(['files' => function ($q) {
+                $q->where('collection', 'image');
+            }])
+            ->paginate(10)
+            ->withQueryString();
+
+        $cars->getCollection()->transform(function ($car) {
+            // Car model has getImageUrlAttribute(), but because we only selected some columns,
+            // make sure we still provide image_url for the frontend.
+            $car->image_url = $car->image_url ?? (
+                !empty($car->car_img) ? Storage::url($car->car_img) : asset('images/car-default.jpg')
+            );
+
+            return $car;
+        });
 
         // Get filter options
         $makes = Car::where('status', CarStatus::AVAILABLE)

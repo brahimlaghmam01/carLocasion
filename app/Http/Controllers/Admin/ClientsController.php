@@ -96,10 +96,12 @@ class ClientsController extends Controller
 
     public function suspend(User $client)
     {
-        // Restrict this action
-        return redirect()
-            ->back()
-            ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        // Restrict this action in demo mode
+        if (config('app.demo')) {
+            return redirect()
+                ->back()
+                ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        }
 
         $client->is_active = false;
         $client->save();
@@ -111,10 +113,12 @@ class ClientsController extends Controller
 
     public function activate(User $client)
     {
-        // Restrict this action
-        return redirect()
-            ->back()
-            ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        // Restrict this action in demo mode
+        if (config('app.demo')) {
+            return redirect()
+                ->back()
+                ->with('restricted_action', 'This is a demo version. For security reasons, create, update, and delete actions are disabled.');
+        }
 
         $client->is_active = true;
         $client->save();

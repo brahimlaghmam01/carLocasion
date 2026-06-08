@@ -126,4 +126,6 @@ return [
     // Currency
     'currency_symbol' => env('APP_CURRENCY_SYMBOL', 'DH'),
     'currency_code' => env('APP_CURRENCY_CODE', 'USD'),
+    // Demo mode flag - when true some destructive actions are blocked for demo sites
+    'demo' => (bool) env('APP_DEMO', false),
 ];

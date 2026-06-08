@@ -35,6 +35,7 @@ class Car extends Model
         'fuel_type',
         'description',
         'status',
+        'car_img',
     ];
 
     /**
@@ -112,6 +113,11 @@ class Car extends Model
 
         if ($file && $file->path) {
             return Storage::url($file->path);
+        }
+
+        // Fallback to the dedicated DB column if it exists
+        if (!empty($this->car_img)) {
+            return Storage::url($this->car_img);
         }
 
         // Fallback to the public default image

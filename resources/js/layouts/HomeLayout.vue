@@ -174,8 +174,8 @@ onMounted(() => {
                             </div>
                             <div>
                                 <h3 class="text-xl font-bold">
-                                    REAL<span class="text-blue-500"
-                                        >RENT</span
+                                    CAR<span class="text-blue-500"
+                                        >LOCATION</span
                                     >
                                 </h3>
                                 <p class="text-xs font-medium text-gray-400">
