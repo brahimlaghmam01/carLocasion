@@ -2,15 +2,6 @@
 
 > A modern, full-featured car rental management system built with Laravel, Inertia.js, and Vue.js
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://real-rent-car.galdi.dev/)
-[![Laravel](https://img.shields.io/badge/Laravel-12-red)](https://laravel.com)
-[![Vue.js](https://img.shields.io/badge/Vue.js-3-green)](https://vuejs.org)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/Mohamed-Galdi/real-rent-car?style=social)](https://github.com/Mohamed-Galdi/real-rent-car/stargazers)
-
-
-
-**[🌐 Visit Live Demo](https://real-rent-car.galdi.dev/)**
 
 Real Rent Car is a comprehensive open-source car rental platform that streamlines vehicle reservations, fleet management, and customer interactions. This is a complete rebuild (v2) featuring modern technologies and an improved user experience.
 
@@ -24,27 +15,7 @@ Real Rent Car is a comprehensive open-source car rental platform that streamline
 - **Database:** MySQL/PostgreSQL compatible
 - **Authentication:** Laravel Sanctum
 
----
-
-## 📸 Screenshots
-
-#### Home Page
-![real rent car hero](readme-files/home-hero.webp)
-
-#### Cars Page
-![real rent car fleet](readme-files/home-cars.webp)
-
-#### Car Details Page
-![real rent car car details](readme-files/home-car.webp)
-
-#### Admin Panel / Cars
-![real rent car admin cars](readme-files/admin-cars.webp)
-
-#### Admin Panel / Reservations
-![real rent car admin reservations](readme-files/admin-reservations.webp)
-
-#### Admin Panel / Reservation Details
-![real rent car admin reservation details](readme-files/admin-reservation.webp)
+------
 
 ## ✨ Features
 
@@ -158,32 +129,7 @@ Please ensure your code follows the project's coding standards and includes appr
 
 ---
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🐛 Bug Reports & Feature Requests
-
-If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/Mohamed-Galdi/real-rent-car/issues) on GitHub.
-
----
-
-## 📧 Contact
-
-For questions or support, please reach out through:
-- GitHub Issues
-- Contact form on the [live demo](https://real-rent-car.galdi.dev/)
-
----
 
 ## 🙏 Acknowledgments
 
 Thanks to all contributors and the open-source community for making this project possible.
-
----
-
-**[⭐ Star this repository](https://github.com/Mohamed-Galdi/real-rent-car)** if you find it helpful!
-
-**[🌐 Try the Live Demo](https://real-rent-car.galdi.dev/)** to see it in action!
