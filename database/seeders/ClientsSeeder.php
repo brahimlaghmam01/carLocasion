@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Agency;
+use App\Models\Role;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Database\Seeder;
@@ -14,6 +16,8 @@ class ClientsSeeder extends Seeder
      */
     public function run(): void
     {
+        $clientRoleId = Role::where('slug', 'client')->value('id');
+        $agencyIds = Agency::query()->orderBy('id')->pluck('id')->all();
         $users = [
             [
                 'name' => 'John Doe',
@@ -87,7 +91,12 @@ class ClientsSeeder extends Seeder
             ],
         ];
 
-        foreach ($users as $userData) {
+        foreach ($users as $index => $userData) {
+            $userData['role_id'] = $clientRoleId;
+            $userData['agency_id'] = $agencyIds !== []
+                ? $agencyIds[$index % count($agencyIds)]
+                : null;
+
             User::firstOrCreate(
                 ['email' => $userData['email']],
                 $userData

@@ -11,6 +11,11 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* Exclude the public directory from automatic source scanning. It holds large
+   binary assets (e.g. multi-MB .glb 3D models) that the oxide scanner would
+   otherwise try to read as text, exhausting memory and crashing the build. */
+@source not '../../public';
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

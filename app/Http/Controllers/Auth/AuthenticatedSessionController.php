@@ -71,8 +71,9 @@ class AuthenticatedSessionController extends Controller
     {
         $user = $request->validateCredentials();
 
-        // Only allow admins to login through this method
-        if ($user->role !== UserRole::ADMIN) {
+        // Allow any administration-area role (Super Admin, Agency Admin or the
+        // legacy Admin) to log in here. Clients are rejected.
+        if (! in_array($user->role, UserRole::adminRoles(), true)) {
             Auth::logout();
             return back()->withErrors([
                 'email' => 'You are not authorized to access the admin area.',

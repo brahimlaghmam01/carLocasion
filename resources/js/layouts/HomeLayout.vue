@@ -55,11 +55,12 @@ onMounted(() => {
                         <img 
                             src="/logo/logo.png" 
                             alt="logo" 
-                            class="h-6 transition-transform duration-300 hover:scale-110" 
+                            class="h-40 transition-transform duration-300 hover:scale-110" 
                         />
-                        <p class="font-bold">
+                        
+                        <!--<p class="font-bold">
                             CAR<span class="text-blue-500">LOCA</span>TION
-                        </p>
+                        </p> -->
                     </div>
 
                     <!--  Navigation -->

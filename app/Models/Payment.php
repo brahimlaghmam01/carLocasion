@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
+use App\Models\Concerns\BelongsToAgency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ use Illuminate\Support\Str;
 class Payment extends Model
 {
     use SoftDeletes;
+    use BelongsToAgency;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +24,7 @@ class Payment extends Model
         'payment_number',
         'reservation_id',
         'user_id',
+        'agency_id',
         'amount',
         'currency',
         'payment_method',

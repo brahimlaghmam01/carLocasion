@@ -187,7 +187,7 @@ function resetAuto() {
 
 function animate() {
   animationId = requestAnimationFrame(animate)
-  if (currentModel) currentModel.rotation.y += 0.035
+  if (currentModel) currentModel.rotation.y += 0.04
   renderer.render(scene, camera)
 }
 
@@ -227,7 +227,7 @@ onBeforeUnmount(() => {
   left: 0;
   right: 0;
   height: 16px;
-  background: linear-gradient(90deg, transparent, #f0a500, transparent);
+  background: linear-gradient(90deg, transparent, #5772e9, transparent);
   z-index: 20;
 }
 
@@ -238,7 +238,7 @@ onBeforeUnmount(() => {
   left: 0;
   right: 0;
   height: 16px;
-  background: linear-gradient(90deg, transparent, #f0a500, transparent);
+  background: linear-gradient(90deg, transparent, #5772e9, transparent);
   z-index: 20;
 }
 .viewer {
@@ -261,7 +261,7 @@ onBeforeUnmount(() => {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #f0a500;
+  color: #5772e9;
   margin: 0 0 10px;
 }
 
@@ -311,7 +311,7 @@ onBeforeUnmount(() => {
 }
 
 .cta {
-  background: #f0a500;
+  background: #5772e9;
   color: #ffffff;
   border: none;
   padding: 12px 28px;

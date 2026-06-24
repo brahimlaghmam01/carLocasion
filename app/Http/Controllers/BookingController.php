@@ -67,9 +67,10 @@ class BookingController extends Controller
         $discount   = 0;
         $total      = $subtotal + $taxAmount - $discount;
 
-        // create reservation
+        // create reservation (inherits the agency that owns the car)
         $reservation = Reservation::create([
             'car_id'          => $car->id,
+            'agency_id'       => $car->agency_id,
             'user_id'         => Auth::id(),
             'start_date'      => $startDate,
             'end_date'        => $endDate,

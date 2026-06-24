@@ -17,43 +17,85 @@ import { index as paymentsIndex } from "@/routes/admin/payments/index";
 import { index as reportsIndex } from "@/routes/admin/reports/index";
 import { index as supportIndex } from "@/routes/admin/support/index";
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/vue3';
-import { Car, Calendar, User, CreditCard, BarChart, LifeBuoy } from 'lucide-vue-next';
+import { Link, usePage } from '@inertiajs/vue3';
+import { Car, Calendar, User, CreditCard, BarChart, LifeBuoy, LayoutDashboard, MapPin, Building2, UserCog, ScrollText } from 'lucide-vue-next';
+import { computed } from 'vue';
 import AppLogo from './AppLogo.vue';
 import { home } from '@/routes';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Cars',
-        href: carsIndex(),
-        icon: Car,
-    },
-    {
-        title: 'Reservations',
-        href: reservationsIndex(),
-        icon: Calendar,
-    },
-    {
-        title: 'Clients',
-        href: clientsIndex(),
-        icon: User,
-    },
-    {
-        title: 'Payments',
-        href: paymentsIndex(),
-        icon: CreditCard,
-    },
-    {
-        title: 'Reports',
-        href: reportsIndex(),
-        icon: BarChart,
-    },
-    {
-        title: 'Support',
-        href: supportIndex(),
-        icon: LifeBuoy,
-    },
-];
+const page = usePage();
+const role = computed(() => page.props.auth.user?.role);
+const isSuperAdmin = computed(() => role.value === 'super_admin');
+
+const mainNavItems = computed<NavItem[]>(() => {
+    const items: NavItem[] = [
+        {
+            title: 'Dashboard',
+            href: '/admin/dashboard',
+            icon: LayoutDashboard,
+        },
+    ];
+
+    if (isSuperAdmin.value) {
+        items.push(
+            {
+                title: 'Cities',
+                href: '/admin/cities',
+                icon: MapPin,
+            },
+            {
+                title: 'Agencies',
+                href: '/admin/agencies',
+                icon: Building2,
+            },
+            {
+                title: 'Agency Admins',
+                href: '/admin/agency-admins',
+                icon: UserCog,
+            },
+        );
+    }
+
+    items.push(
+        {
+            title: 'Cars',
+            href: carsIndex(),
+            icon: Car,
+        },
+        {
+            title: 'Reservations',
+            href: reservationsIndex(),
+            icon: Calendar,
+        },
+        {
+            title: 'Clients',
+            href: clientsIndex(),
+            icon: User,
+        },
+        {
+            title: 'Payments',
+            href: paymentsIndex(),
+            icon: CreditCard,
+        },
+        {
+            title: 'Reports',
+            href: reportsIndex(),
+            icon: BarChart,
+        },
+        {
+            title: 'Support',
+            href: supportIndex(),
+            icon: LifeBuoy,
+        },
+        {
+            title: 'Activity Logs',
+            href: '/admin/activity-logs',
+            icon: ScrollText,
+        },
+    );
+
+    return items;
+});
 
 </script>
 

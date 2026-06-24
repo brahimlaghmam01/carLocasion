@@ -32,6 +32,10 @@ export interface User {
     email: string;
     avatar?: string;
     role: string;
+    role_id?: number | null;
+    agency_id?: number | null;
+    is_active?: boolean;
+    agency?: { id: number; name: string } | null;
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;

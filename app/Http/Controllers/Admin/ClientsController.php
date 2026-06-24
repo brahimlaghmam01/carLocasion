@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Enums\PaymentStatus;
 use App\Enums\UserRole;
+use App\Models\ActivityLog;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,8 +20,11 @@ class ClientsController extends Controller
         $search = $request->string('search')->toString();
         $status = $request->string('status')->toString();
 
+        $agencyId = Auth::user()->isAgencyAdmin() ? Auth::user()->agency_id : null;
+
         $query = User::query()
             ->where('role', UserRole::CLIENT)
+            ->when($agencyId, fn ($q) => $q->where('agency_id', $agencyId))
             ->when($search, function ($q) use ($search) {
                 $q->where(function ($w) use ($search) {
                     $w->where('name', 'like', "%{$search}%")
@@ -39,8 +44,10 @@ class ClientsController extends Controller
         $clients = $query->paginate(10)->withQueryString();
 
         $statusCounts = [
-            'active' => User::where('role', UserRole::CLIENT)->where('is_active', true)->count(),
-            'suspended' => User::where('role', UserRole::CLIENT)->where('is_active', false)->count(),
+            'active' => User::where('role', UserRole::CLIENT)->where('is_active', true)
+                ->when($agencyId, fn ($q) => $q->where('agency_id', $agencyId))->count(),
+            'suspended' => User::where('role', UserRole::CLIENT)->where('is_active', false)
+                ->when($agencyId, fn ($q) => $q->where('agency_id', $agencyId))->count(),
         ];
 
         $statuses = [
@@ -105,6 +112,7 @@ class ClientsController extends Controller
 
         $client->is_active = false;
         $client->save();
+        $this->logClientAction('suspended', $client);
 
         return redirect()
             ->route('admin.clients.show', $client)
@@ -122,9 +130,25 @@ class ClientsController extends Controller
 
         $client->is_active = true;
         $client->save();
+        $this->logClientAction('activated', $client);
 
         return redirect()
             ->route('admin.clients.show', $client)
             ->with('success', 'Client activated successfully.');
+    }
+
+    /**
+     * Record a customer management action in the activity log.
+     */
+    private function logClientAction(string $action, User $client): void
+    {
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'agency_id' => $client->agency_id,
+            'action' => $action,
+            'model' => User::class,
+            'record_id' => $client->id,
+            'description' => ucfirst($action) . " customer #{$client->id}",
+        ]);
     }
 }

@@ -120,8 +120,12 @@ class ReportsController extends Controller
             ->whereBetween('start_date', [$dateRange['start'], $dateRange['end']])
             ->count();
 
-        // New clients in the period
+        // New clients in the period (scoped to the agency for Agency Admins)
+        $authUser = \Illuminate\Support\Facades\Auth::user();
+        $agencyId = ($authUser && $authUser->isAgencyAdmin()) ? $authUser->agency_id : null;
+
         $newClients = User::where('role', UserRole::CLIENT)
+            ->when($agencyId, fn ($q) => $q->where('agency_id', $agencyId))
             ->whereBetween('created_at', [$dateRange['start'], $dateRange['end']])
             ->count();
 

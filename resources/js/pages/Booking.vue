@@ -109,13 +109,13 @@ const images = computed(() => {
 });
 
 const commonLocations = [
-    'Downtown Office',
-    'Airport Terminal 1',
-    'Airport Terminal 2',
-    'Central Station',
-    'Mall Plaza',
-    'Hotel District',
-    'Business District',
+    'Fes Medina',
+    'Airport Fes Sais',
+    'Fes city center',
+    'champ de course',
+    'Oued Fes',
+    'Mont Fleurie',
+    'Fes Shore',
 ];
 </script>
 <template>

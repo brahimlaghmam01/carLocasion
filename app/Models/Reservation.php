@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\ReservationStatus;
+use App\Models\Concerns\BelongsToAgency;
+use App\Models\Concerns\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +14,8 @@ use Illuminate\Support\Str;
 class Reservation extends Model
 {
     use SoftDeletes;
+    use BelongsToAgency;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +25,7 @@ class Reservation extends Model
     protected $fillable = [
         'reservation_number',
         'user_id',
+        'agency_id',
         'car_id',
         'start_date',
         'end_date',

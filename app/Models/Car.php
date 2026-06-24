@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\CarColor;
 use App\Enums\CarStatus;
 use App\Enums\FuelType;
+use App\Models\Concerns\BelongsToAgency;
+use App\Models\Concerns\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +18,8 @@ class Car extends Model
 {
     use SoftDeletes;
     use HasFiles;
+    use BelongsToAgency;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +27,7 @@ class Car extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'agency_id',
         'make',
         'model',
         'year',
