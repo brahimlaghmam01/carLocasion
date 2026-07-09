@@ -130,6 +130,10 @@ class CarsController extends Controller
                 'image'
             );
 
+            // The FilePond package stores paths with a leading "storage/" prefix,
+            // which breaks Storage::url(). Normalise to the clean, disk-relative path.
+            $this->normalizeImagePaths($car);
+
             // Persist the first uploaded image path into cars.car_img (used by fallback)
             $car->load('files');
             $firstImage = $car->files
@@ -227,6 +231,10 @@ class CarsController extends Controller
             'image'
         );
 
+        // The FilePond package stores paths with a leading "storage/" prefix,
+        // which breaks Storage::url(). Normalise to the clean, disk-relative path.
+        $this->normalizeImagePaths($car);
+
         // Update cars.car_img from the current FilePond 'image' collection
         $car->load('files');
         $firstImage = $car->files
@@ -239,6 +247,21 @@ class CarsController extends Controller
         return redirect()
             ->route('admin.cars.index')
             ->with('success', 'Car updated successfully.');
+    }
+
+    /**
+     * Strip the leading "storage/" prefix the FilePond package adds to stored
+     * file paths so they remain disk-relative (e.g. files/car/1/image/...).
+     */
+    private function normalizeImagePaths(Car $car): void
+    {
+        $car->files()
+            ->where('collection', 'image')
+            ->where('path', 'like', 'storage/%')
+            ->get()
+            ->each(function ($file) {
+                $file->update(['path' => preg_replace('#^storage/#', '', $file->path)]);
+            });
     }
 
     /**
